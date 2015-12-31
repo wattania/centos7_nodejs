@@ -15,3 +15,22 @@ RUN wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz \
 && cd / \
 && rm -rf node-$NODE_VERSION \
 && rm -f node-$NODE_VERSION.tar.gz
+
+### RUBY #####################################################################
+RUN yum install -y git bison libtool automake patch\
+ zlib-devel libxml2-devel openssl-devel libyaml-devel libffi-devel readline-devel gdbm-devel ncurses-devel libcurl-devel pcre-devel
+# 1.9
+ENV RUBY_SERIES 2.2 
+# 1.9.3-p551
+ENV RUBY_VERSION 2.2.3
+
+RUN wget https://cache.ruby-lang.org/pub/ruby/$RUBY_SERIES/ruby-$RUBY_VERSION.tar.gz \
+&& tar -xf /ruby-$RUBY_VERSION.tar.gz \
+&& cd /ruby-$RUBY_VERSION \
+&& ./configure \
+&& make && make install \
+&& cd / \
+&& rm -rf /ruby-$RUBY_VERSION \
+&& rm -f /ruby-$RUBY_VERSION.tar.gz \
+|| yum clean all
+#################################################################
