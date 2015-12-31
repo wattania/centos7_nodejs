@@ -1,5 +1,5 @@
-FROM wattania/centos7_nodejs
-MAINTAINER Wattana Inthaphong <wattaint@gmail.com>
+FROM wattania/centos7_node:4.2.4
+MAINTAINER Wattana Inthaphong <wattaint@gmail.com
 
 ### RUBY #####################################################################
 RUN yum update -y \
