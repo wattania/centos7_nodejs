@@ -1,4 +1,4 @@
-FROM registry.angsoln.net/angstroms/centos7_nodejs:node4.2.2
+FROM registry.angsoln.net/angstroms/centos7_nodejs:node4.2.4
 MAINTAINER Wattana Inthaphong <wattaint@gmail.com>
 
 ### RUBY #####################################################################

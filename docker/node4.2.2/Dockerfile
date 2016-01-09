@@ -5,7 +5,7 @@ RUN yum update -y \
 && yum install -y make gcc gcc-c++ wget vim mlocate which tar bzip2 zip unzip net-tools \
 && yum clean all
 ### NODE.JS #####################################################################
-ENV NODE_VERSION v4.2.4
+ENV NODE_VERSION v4.2.2
 RUN wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz \
 && tar -xf node-$NODE_VERSION.tar.gz \
 && cd node-$NODE_VERSION \
