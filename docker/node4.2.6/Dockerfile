@@ -1,4 +1,4 @@
-FROM centos:7.1.1511
+FROM centos:7.2.1511
 MAINTAINER Wattana Inthaphong <wattaint@gmail.com>
 
 RUN yum update -y \
