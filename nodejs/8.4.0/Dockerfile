@@ -1,0 +1,35 @@
+FROM centos:7.3.1611
+MAINTAINER Wattana Inthaphong <wattana@angstromsolutions.net>
+
+#ENV LANG en_US.UTF-8
+#ENV LC_TIME en_US.UTF-8
+#RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+#RUN echo "export LANG=en_US.UTF-8" >> /etc/profile.d/locale.sh && echo "export LANGUAGE=en_US.UTF-8" >> /etc/profile.d/locale.sh
+
+# Setup Timezone
+#ENV TZ "Asia/Bangkok"
+
+ENV NODE_VERSION v8.4.0
+# Enable EPEL
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8 &&\
+  yum clean all &&\
+  yum update -y &&\
+  yum install -y epel-release &&\
+  yum update -y &&\
+  yum install -y python-pip bind-utils openssl haveged autoconf make gcc gcc-c++ wget vim mlocate which tar bzip2 zip unzip net-tools telnet nc file \
+    git bison libtool automake patch \
+    zlib-devel libxml2-devel openssl-devel libyaml-devel libffi-devel readline-devel gdbm-devel ncurses-devel libcurl-devel pcre-devel\
+    sqlite-devel libxslt libxslt-devel &&\
+  pip install --upgrade pip &&\
+  yum clean all &&\
+  wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz &&\
+  tar -xf node-$NODE_VERSION.tar.gz &&\
+  cd node-$NODE_VERSION &&\
+  ./configure &&\
+  make &&\
+  make install &&\
+  cd / &&\
+  rm -rf node-$NODE_VERSION &&\
+  rm -f node-$NODE_VERSION.tar.gz
+
+ENV PATH $PATH:/node_modules/.bin
